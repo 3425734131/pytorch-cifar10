@@ -25,12 +25,6 @@
 - pandas
 - scikit-learn
 
-您可以通过以下命令安装所有依赖：
-
-```bash
-pip install -r requirements.txt
-```
-
 ## 数据集
 
 该项目使用 **CIFAR-10** 数据集，包含 10 个类别的 60,000 张 32x32 彩色图片。数据集会自动下载并存储在 `../data` 目录下。
