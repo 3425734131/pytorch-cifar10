@@ -1,6 +1,4 @@
-根据您的代码，下面是修改后的 GitHub 项目 README 文档，包含了如何运行、参数说明、训练过程和结果保存等内容：
 
-------
 
 # CIFAR-10 分类与 PyramidNet
 
@@ -27,12 +25,6 @@
 - pandas
 - scikit-learn
 
-您可以通过以下命令安装所有依赖：
-
-```bash
-pip install -r requirements.txt
-```
-
 ## 数据集
 
 该项目使用 **CIFAR-10** 数据集，包含 10 个类别的 60,000 张 32x32 彩色图片。数据集会自动下载并存储在 `../data` 目录下。
@@ -49,15 +41,16 @@ python train.py --logdir logs
 
 这将启动训练过程并在每个 epoch 结束时将训练指标（如损失、精度等）记录到 **TensorBoard**。训练过程中会定期保存模型到 `./save_model/ckpt.pth`。
 
-### 2. 从检查点恢复训练
+### 2. 从检查点恢复模型
 
-如果您想从之前保存的模型检查点恢复训练，可以运行：
+如果您想从之前保存的模型检查点恢复模型，可以运行：
 
 ```bash
 python train.py --logdir logs --resume ckpt.pth
 ```
 
 该命令将从 `./save_model/ckpt.pth` 加载模型并继续训练。
+加载模型后，会对测试集进行预测，并返回测试精度。
 
 ### 参数说明：
 
