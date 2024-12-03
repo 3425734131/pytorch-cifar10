@@ -10,6 +10,7 @@ from torchvision.datasets import CIFAR10
 from torch.utils.data import DataLoader
 from model import pyramidnet
 import argparse
+from torch.optim.lr_scheduler import CosineAnnealingLR
 from tensorboardX import SummaryWriter
 import pandas as pd
 from sklearn.metrics import precision_score, recall_score, f1_score
@@ -204,8 +205,9 @@ if __name__ == '__main__':
     #     weight_decay=1e-4  # 权重衰减（L2 正则化）
     # )
 
-    decay_epochs = [150, 200]
-    step_lr_scheduler = lr_scheduler.MultiStepLR(optimizer, decay_epochs, gamma=0.1)
+    # decay_epochs = [150, 200]
+    scheduler = CosineAnnealingLR(optimizer, T_max=200)
+    # step_lr_scheduler = lr_scheduler.MultiStepLR(optimizer, [150, 200], gamma=0.1)
     writer = SummaryWriter(args.logdir)
 
     if args.resume is not None:
@@ -213,7 +215,8 @@ if __name__ == '__main__':
         print('best test accuracy is ', best_acc)
     else:
         for epoch in range(200):
-            step_lr_scheduler.step()
+            scheduler.step()
+            # step_lr_scheduler.step()
             train_metrics = train(epoch)
             test_metrics, best_acc = test(epoch, best_acc)
             train_metrics.update(test_metrics)
