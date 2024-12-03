@@ -142,3 +142,4 @@ def pyramidnet():
     block = ResidualBlock
     model = PyramidNet(num_layers=18, alpha=48, block=block)
     return model
+
